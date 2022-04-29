@@ -9,6 +9,7 @@ import loading from "react-useanimations/lib/loading3";
 import { addFavCat, getFavCats, removeFavCat } from "../../helper/localStorage";
 
 import { FavCatsContext } from "../../context/cats";
+import Image from "next/image";
 
 interface ItemState {
   cat: {
@@ -80,7 +81,8 @@ const Item: NextPage<ItemState> = ({
         {!cat ? (
           <UseAnimation animation={loading} size={36} strokeColor="grey" />
         ) : (
-          <img
+          <Image
+            alt="cat"
             src={"https://cataas.com" + cat.url}
             className="h-full w-full object-cover"
           />

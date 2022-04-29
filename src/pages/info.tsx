@@ -12,13 +12,15 @@ const Info: NextPage = () => {
         <h1 className={p1}>Privacy</h1>
         <p className="mb-2">WatchCats does not collect any user data. </p>
         <p>
-          We only use your browser's local storage to save your favorites cats.
+          We only use your browser&apos;s local storage to save your favorites
+          cats.
         </p>
         <p>
           We use CloudFlare as hosting and it analytic tool. <br />
           <a
             href="https://blog.cloudflare.com/privacy-first-web-analytics/"
             target="_blank"
+            rel="noreferrer"
             className="font-medium"
           >
             Click here {""}
@@ -30,7 +32,12 @@ const Info: NextPage = () => {
         <h1 className={p1}>Cat</h1>
         <p>
           All cats come from{" "}
-          <a href="https://cataas.com" target="_blank" className="font-medium">
+          <a
+            href="https://cataas.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium"
+          >
             cataas
           </a>
           .
