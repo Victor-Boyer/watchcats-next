@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <main>
+      <title>WatchCats</title>
       <FavCatsContext.Provider value={{ favCats, setFavCats }}>
         <>
           <NavBar />
