@@ -81,7 +81,7 @@ const Item: NextPage<ItemState> = ({
         {!cat ? (
           <UseAnimation animation={loading} size={36} strokeColor="grey" />
         ) : (
-          <Image
+          <img
             alt="cat"
             src={"https://cataas.com" + cat.url}
             className="h-full w-full object-cover"

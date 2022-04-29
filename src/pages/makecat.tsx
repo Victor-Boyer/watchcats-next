@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "../components/Item";
 import UseAnimations from "react-useanimations";
 import { toast } from "react-toastify";
@@ -13,6 +13,17 @@ const Makecat: NextPage = ({ cat }: { cat }) => {
   const [actualCat, setActualCat] = useState(cat);
   const [firstClick, setFirstClick] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const fetchCats = async () => {
+    const { data } = await axios.get(
+      `https://cataas.com/cat?width=384&json=true&type=sq`
+    );
+    setActualCat(data);
+  };
+
+  useEffect(() => {
+    fetchCats();
+  }, []);
 
   const getCat = async () => {
     if (message.length < 1) {
@@ -57,25 +68,9 @@ const Makecat: NextPage = ({ cat }: { cat }) => {
           </button>
         </div>
       </div>
-      <Item cat={actualCat} />
+      {actualCat && <Item cat={actualCat} />}
     </div>
   );
 };
-
-export async function getStaticProps() {
-  try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/cat?width=384&json=true&type=sq`
-    );
-
-    return {
-      props: {
-        cat: data,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 export default Makecat;

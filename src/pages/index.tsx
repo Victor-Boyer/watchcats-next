@@ -10,8 +10,23 @@ type Cat = {
   createdAt: string;
 };
 
-const Home: NextPage = ({ cats }: { cats: Cat[] }) => {
-  const [catsList, setCatsList] = useState(cats);
+const Home: NextPage = () => {
+  const [catsList, setCatsList] = useState([]);
+
+  const fetchCats = async () => {
+    const cats: Cat[] = [];
+    for (let i = 0; i < 5; i++) {
+      const { data } = await axios.get(
+        `https://cataas.com/cat?width=384&json=true&type=sq`
+      );
+      cats.push(data);
+    }
+    setCatsList([...cats]);
+  };
+
+  useEffect(() => {
+    fetchCats();
+  }, []);
 
   const handleScroll = async (e) => {
     const bottom =
@@ -50,23 +65,23 @@ const Home: NextPage = ({ cats }: { cats: Cat[] }) => {
   );
 };
 
-export async function getStaticProps() {
-  try {
-    const cats = [];
-    for (let i = 0; i < 5; i++) {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_URL}/cat?width=384&json=true&type=sq`
-      );
-      cats.push(data);
-    }
-    return {
-      props: {
-        cats,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-  }
-}
+// export async function getStaticProps() {
+//   try {
+//     const cats = [];
+//     for (let i = 0; i < 5; i++) {
+//       const { data } = await axios.get(
+//         `${process.env.REACT_APP_URL}/cat?width=384&json=true&type=sq`
+//       );
+//       cats.push(data);
+//     }
+//     return {
+//       props: {
+//         cats,
+//       },
+//     };
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 export default Home;

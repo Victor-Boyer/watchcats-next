@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "start::prod" : "next build && next start --production",
+    "export" : "next export",
     "lint": "next lint"
   },
   "dependencies": {
